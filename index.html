@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DOM Traversal</title>
+<link href="css/meyerReset.css" rel="stylesheet" type="text/css" media="screen">
+<link href="css/GOT_master.css" rel="stylesheet" type="text/css" media="screen">
+</head>
+
+<body>
+  <main>
+    <section id="imageContainer">
+    	<div id="houseImages" style="right: 0"> <!-- add in all of the images to make a scrolling "banner" -->
+    		<img src="images/stark.jpg"/>
+    		<img src="images/baratheon.jpg"/>
+    		<img src="images/lannister.jpg"/>
+    		<img src="images/tully.jpg"/>
+    		<img src="images/greyjoy.jpg"/>
+    		<img src="images/arryn.jpg"/>
+        </div>
+    </section>
+
+    <nav id="bottomNav">
+    	<ul id="navList">
+        	<!-- custom data attribute, allowing to pass custom data https://developer.mozilla.org/en/docs/Web/API/HTMLElement/dataset -->
+            <li>
+              <div class="sigilContainer stark" data-offset="0"></div>
+            </li>
+            <li><div class="sigilContainer baratheon" data-offset="1"></div></li>
+            <li><div class="sigilContainer lannister" data-offset="2"></div></li>
+            <li><div class="sigilContainer tully" data-offset="3"></div></li>
+            <li><div class="sigilContainer greyjoy" data-offset="4"></div></li>
+            <li><div class="sigilContainer arryn" data-offset="5"></div></li>
+        </ul>
+    </nav>
+
+    <h1>House &nbsp; Stark</h1><!-- replace this with the house name -->
+
+    <p class="house-info"></p><!-- replace this with house details (github gist) -->
+
+    <!-- lightbox goes here -->
+    <section class="lightbox">
+      <a href="#" class="close">X</a>
+      <video src="video/House-Stark.mp4" controls></video>
+    </section>
+    <!-- end lightbox -->
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>
