@@ -22,7 +22,6 @@
             <img src="images/targaryen.jpg"/>
         </div>
     </section>
-
     <nav id="bottomNav">
     	<ul id="navList">
         	<!-- custom data attribute, allowing to pass custom data https://developer.mozilla.org/en/docs/Web/API/HTMLElement/dataset -->
@@ -39,16 +38,21 @@
             <li><div class="sigilContainer targaryen" data-offset="8"></div></li>
         </ul>
     </nav>
-
     <h1>House &nbsp; Stark</h1><!-- replace this with the house name -->
-
     <p class="house-info"></p><!-- replace this with house details (github gist) -->
-
     <!-- lightbox goes here -->
     <section class="lightbox">
       <a href="#" class="close">X</a>
-      <video src="video/House-Stark.mp4" controls></video>
+      <video src="video/House-Stark.mp4" controls=""></video>
+      <ul id="controls">
+        <li><a href="#" class="play">Play</a></li>
+        <li><a href="#" class="pause">Pause</a></li>
+        <li><a href="#" class="mute">Mute</a></li>
+        <li><a href="#" class="unMute">unmute</a></li>
 
+        <!-- I don't know, I've never watched game of thrones.... -->
+        <li><a href="#" class="louder">WARCRY</a></li>
+      </ul>
     </section>
     <!-- end lightbox -->
 </main>

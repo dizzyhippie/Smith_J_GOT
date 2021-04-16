@@ -6,6 +6,11 @@
         banner = document.querySelector('#houseImages'),
         lightBox = document.querySelector(".lightbox"),
         vid = lightBox.querySelector('video'),
+        playButton = document.querySelector('.play'),
+        pauseButton = document.querySelector('.pause'),
+        mute = document.querySelector('.mute'),
+        unMuteVid = document.querySelector('.unMute'),
+        louder = document.querySelector('.louder'),
         houseName = document.querySelector('h1'),
         houseDescription = document.querySelector('.house-info');
 
@@ -38,11 +43,33 @@
 
   function playVideo() {
     vid.play();
+    vid.volume = 0.25;
   }
 
+//Closed out of the lightbox, resets
   function stopVideo() {
     vid.pause();
     vid.currentTime = 0;
+  }
+
+//Paused with the intent to resume again
+  function pauseVideo() {
+    vid.pause();
+  }
+
+  function muteVid(events){
+    let houseVid = document.querySelectorAll('video');
+    houseVid.forEach(houseVid => houseVid.volume = 0.0);
+  }
+
+    function unMute(events){
+    let houseVid = document.querySelectorAll('video');
+    houseVid.forEach(houseVid => houseVid.volume = 0.25);
+  }
+
+  function warCry(event){
+     let houseVid = document.querySelectorAll('video');
+    houseVid.forEach(houseVid => houseVid.volume = 1.0);
   }
 
   function setHouseData(name, desc) {
@@ -81,7 +108,6 @@
         stopVideo();
         lightBox.classList.remove('show-lightbox');
       })
-
       //Listens for the end of the video, then closes the lightbox and video
       vid.addEventListener('ended', () => {
         stopVideo();
@@ -91,6 +117,12 @@
   }
 
   sigils.addEventListener('click', animateBanner);
-  //sigils.addEventListener('click', popLightBox);
+  //Can't figure out how to get this to run only after the animation
+  sigils.addEventListener('click', popLightBox);
+  playButton.addEventListener('click', playVideo);
+  pauseButton.addEventListener('click', pauseVideo);
+  mute.addEventListener('click', muteVid);
+  unMuteVid.addEventListener('click', unMute);
+  louder.addEventListener('click', warCry)
 
 })();
