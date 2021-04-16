@@ -66,21 +66,24 @@
       // 0, 600, 1200, 1800px depending on the math
       banner.style.right = `${multiplier * offsetWidth}px`;
     }
+    // set the house data by running the setHouseData function and passing data into it
+    setHouseData(houseInfo[event.target.dataset.offset][0], houseInfo[event.target.dataset.offset][1]);
   }
 
   function popLightBox(event) {
     // add a class to open the lightBox, use event delegation so we only need one event listener
     if (event.target.className.includes('sigilContainer')) {
       lightBox.classList.add('show-lightbox');
-
       let targetHouse = event.target.className.split(" ")[1]; //"baratheon", "stark", "tully" etc
       setVideoSource(targetHouse);
 
-      // this might not be the best spot for this function invocation
-      // set the house data by running the setHouseData function and passing data into it
-      setHouseData(houseInfo[event.target.dataset.offset][0], houseInfo[event.target.dataset.offset][1]);
-
       lightBox.querySelector('.close').addEventListener('click', () => {
+        stopVideo();
+        lightBox.classList.remove('show-lightbox');
+      })
+
+      //Listens for the end of the video, then closes the lightbox and video
+      vid.addEventListener('ended', () => {
         stopVideo();
         lightBox.classList.remove('show-lightbox');
       })
@@ -88,5 +91,6 @@
   }
 
   sigils.addEventListener('click', animateBanner);
-  sigils.addEventListener('click', popLightBox);
+  //sigils.addEventListener('click', popLightBox);
+
 })();
