@@ -90,10 +90,6 @@ main {
 .targaryen { background-position:-405px -54px; }
 .targaryen:hover { background-position:-405px 0px; }
 
-
-
-
-
 /* ----- end image sprite ----- */
 
 /* ----- classes for transitions ----- */
@@ -129,9 +125,16 @@ main {
 	font-family: 'GOT_font';
 	margin: 15px;
 }
-#controls li a{
+#controls li a{text-decoration: none; color: #fff;}
+
+.openBox{
 	text-decoration: none;
-	color: #fff;
+	color: #B9540c;
+	font-size: 22px;
+	font-family: 'GOT_font';
+	margin: 15px;
+	text-align: center;
+	margin-right: 40px;
 }
 
 .show-lightbox { display: block; }
@@ -151,6 +154,8 @@ main {
   width: 70%;
   padding-top: 12px;
   margin: 0 auto;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 video {

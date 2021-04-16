@@ -12,7 +12,8 @@
         unMuteVid = document.querySelector('.unMute'),
         louder = document.querySelector('.louder'),
         houseName = document.querySelector('h1'),
-        houseDescription = document.querySelector('.house-info');
+        houseDescription = document.querySelector('.house-info'),
+        reLaunch = document.querySelector('.openBox');
 
   // adding house info using arrays -> this is what you would do for FIP as well
   const houseInfo = [
@@ -94,35 +95,42 @@
       banner.style.right = `${multiplier * offsetWidth}px`;
     }
     // set the house data by running the setHouseData function and passing data into it
-    setHouseData(houseInfo[event.target.dataset.offset][0], houseInfo[event.target.dataset.offset][1]);
-  }
-
-  function popLightBox(event) {
-    // add a class to open the lightBox, use event delegation so we only need one event listener
-    if (event.target.className.includes('sigilContainer')) {
-      lightBox.classList.add('show-lightbox');
-      let targetHouse = event.target.className.split(" ")[1]; //"baratheon", "stark", "tully" etc
-      setVideoSource(targetHouse);
-
-      lightBox.querySelector('.close').addEventListener('click', () => {
-        stopVideo();
-        lightBox.classList.remove('show-lightbox');
-      })
+    //Also delay the info by 800 ms so that the animation can finish
+    setTimeout(() => {setHouseData(houseInfo[event.target.dataset.offset][0], houseInfo[event.target.dataset.offset][1])}, 800);
+    //This delays the adding of the classlist by 2 seconds, allowing the animation to finish before opening.
+    setTimeout(() => {lightBox.classList.add('show-lightbox'); }, 4000);
+    setTimeout(() => {setVideoSource(targetHouse); }, 4000);
+    let targetHouse = event.target.className.split(" ")[1]; //"baratheon", "stark", "tully" etc
+    lightBox.querySelector('.close').addEventListener('click', () => {
+    stopVideo();
+    lightBox.classList.remove('show-lightbox');
+   })
       //Listens for the end of the video, then closes the lightbox and video
       vid.addEventListener('ended', () => {
         stopVideo();
         lightBox.classList.remove('show-lightbox');
       })
-    }
   }
 
+  //To be used if they want to watch the video after exiting, but are already on the correct banner
+  function buttonLaunch(event){
+    lightBox.classList.add('show-lightbox');
+    playVideo();
+    lightBox.querySelector('.close').addEventListener('click', () => {
+    stopVideo();
+    lightBox.classList.remove('show-lightbox');
+   })
+  }
+
+
   sigils.addEventListener('click', animateBanner);
-  //Can't figure out how to get this to run only after the animation
-  sigils.addEventListener('click', popLightBox);
+  //no longer need this since it's condensed into the animate banner function
+  //sigils.addEventListener('click', popLightBox);
   playButton.addEventListener('click', playVideo);
   pauseButton.addEventListener('click', pauseVideo);
   mute.addEventListener('click', muteVid);
   unMuteVid.addEventListener('click', unMute);
   louder.addEventListener('click', warCry)
+  reLaunch.addEventListener('click', buttonLaunch);
 
 })();
